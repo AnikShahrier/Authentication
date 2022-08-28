@@ -50,7 +50,7 @@ namespace Authentication.Controllers
             }
 
             string token = CreateToken(user);
-            return Ok("Okay");
+            return Ok(token);
         }
 
         private string CreateToken(User user)

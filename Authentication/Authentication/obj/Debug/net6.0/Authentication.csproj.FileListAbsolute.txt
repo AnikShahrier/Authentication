@@ -25,3 +25,8 @@ D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\obj\Debu
 D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\obj\Debug\net6.0\Authentication.pdb
 D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\obj\Debug\net6.0\Authentication.genruntimeconfig.cache
 D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\obj\Debug\net6.0\ref\Authentication.dll
+D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Oishik\Projects\Web API\Authentication\Authentication\Authentication\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

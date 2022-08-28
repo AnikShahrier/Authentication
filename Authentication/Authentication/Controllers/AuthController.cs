@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 
 namespace Authentication.Controllers
@@ -9,6 +12,12 @@ namespace Authentication.Controllers
     public class AuthController : ControllerBase
     {
         public static User user = new User();
+        private readonly IConfiguration configuration;
+
+        public AuthController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
 
         [HttpPost("register")]
 
@@ -19,6 +28,8 @@ namespace Authentication.Controllers
             user.Username = request.UserName;
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+
+
 
             return Ok(user);
 
@@ -38,7 +49,29 @@ namespace Authentication.Controllers
                 return BadRequest("Password Error");
             }
 
+            string token = CreateToken(user);
             return Ok("Okay");
+        }
+
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username)
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                configuration.GetSection("AppSetting:Token").Value));
+            
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddHours(6),
+                signingCredentials: creds);
+          
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+            return jwt;
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
